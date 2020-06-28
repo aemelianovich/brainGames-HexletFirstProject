@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
 
-export const welcomeMsg = () => {
-    console.log('Welcome to the Brain Games');
+export const welcomeMsg = (msg='Welcome to the Brain Games') => {
+    console.log(msg);
 };
 
 export const askUserName = () => {
