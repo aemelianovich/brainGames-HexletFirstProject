@@ -4,5 +4,5 @@ import * as cli from '../src/cli.js';
 
 cli.welcomeMsg();
 
-let userName = cli.askUserName();
+const userName = cli.askUserName();
 cli.greetingUser(userName);
