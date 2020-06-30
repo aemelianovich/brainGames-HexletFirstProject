@@ -28,9 +28,11 @@ const runEvenGame = (numberOfRounds, playerName = '') => {
 
     // Get answer
     const answer = readlineSync.question('Your answer: ');
+
+    // Check correctness
     const isEvenResult = isEven(randomNum);
     const isTrueAnswerResult = checkAnswer(answer, trueValues);
-    // Check correctness
+
     if (checkAnswer(answer, allowedValues)) {
       if ((isEvenResult && isTrueAnswerResult)
           || (!isEvenResult && !isTrueAnswerResult)) {
