@@ -21,54 +21,33 @@ const brainGames = [
 const getGameFunctions = (gameName) => {
   const gameFunctions = new Map();
 
+  let gameModel;
+  // Link specific alias based on the chosen game
   switch (gameName) {
-    // Init brain-even game functions
     case brainEven.gameName:
-      // show Game Rules
-      gameFunctions.set('showGameRules', brainEven.showGameRules);
-      // get Game Question Expression
-      gameFunctions.set('getGameQuestion', brainEven.getGameQuestion);
-      // get Correct Game Answer
-      gameFunctions.set('getCorrectGameAnswer', brainEven.getCorrectGameAnswer);
-
-      return gameFunctions;
-
-    // Init brain-calc game functions
+      gameModel = brainEven;
+      break;
     case brainCalc.gameName:
-      // show Game Rules
-      gameFunctions.set('showGameRules', brainCalc.showGameRules);
-      // get Game Question Expression
-      gameFunctions.set('getGameQuestion', brainCalc.getGameQuestion);
-      // get Correct Game Answer
-      gameFunctions.set('getCorrectGameAnswer', brainCalc.getCorrectGameAnswer);
-
-      return gameFunctions;
-
-    // Init brain-gcd game functions
+      gameModel = brainCalc;
+      break;
     case brainGCD.gameName:
-      // show Game Rules
-      gameFunctions.set('showGameRules', brainGCD.showGameRules);
-      // get Game Question Expression
-      gameFunctions.set('getGameQuestion', brainGCD.getGameQuestion);
-      // get Correct Game Answer
-      gameFunctions.set('getCorrectGameAnswer', brainGCD.getCorrectGameAnswer);
-
-      return gameFunctions;
-
-    // Init brain-gcd game functions
+      gameModel = brainGCD;
+      break;
     case brainProgression.gameName:
-      // show Game Rules
-      gameFunctions.set('showGameRules', brainProgression.showGameRules);
-      // get Game Question Expression
-      gameFunctions.set('getGameQuestion', brainProgression.getGameQuestion);
-      // get Correct Game Answer
-      gameFunctions.set('getCorrectGameAnswer', brainProgression.getCorrectGameAnswer);
-
-      return gameFunctions;
-
+      gameModel = brainProgression;
+      break;
     default:
       throw new Error(`Unable to identify game for passed gameName: "${gameName}"`);
   }
+
+  // show Game Rules
+  gameFunctions.set('showGameRules', gameModel.showGameRules);
+  // get Game Question Expression
+  gameFunctions.set('getGameQuestion', gameModel.getGameQuestion);
+  // get Correct Game Answer
+  gameFunctions.set('getCorrectGameAnswer', gameModel.getCorrectGameAnswer);
+
+  return gameFunctions;
 };
 
 // Run Game function
