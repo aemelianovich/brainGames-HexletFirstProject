@@ -6,3 +6,7 @@
 Installation Tutorial:
 
 [![Installation Tutorial](https://asciinema.org/a/xc3Uq0ZjpTkQUFtiZkV8djthz.svg)](https://asciinema.org/a/xc3Uq0ZjpTkQUFtiZkV8djthz?autoplay=1&speed=2)
+
+Brain Even Game Tutorial:
+
+[![Brain Even Game](https://asciinema.org/a/jb3IOLw97KAN0AEgO7TQ06pnH.svg)](https://asciinema.org/a/jb3IOLw97KAN0AEgO7TQ06pnH?autoplay=1&speed=2)
