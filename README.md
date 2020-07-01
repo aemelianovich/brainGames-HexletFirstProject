@@ -10,3 +10,7 @@ Installation Tutorial:
 Brain Even Game Tutorial:
 
 [![Brain Even Game](https://asciinema.org/a/jb3IOLw97KAN0AEgO7TQ06pnH.svg)](https://asciinema.org/a/jb3IOLw97KAN0AEgO7TQ06pnH?autoplay=1&speed=2)
+
+Brain Calc Game Tutorial:
+
+[![Brain Calc Game](https://asciinema.org/a/nmGCKRidt5CK2RuYG1GBjg3ZQ.svg)](https://asciinema.org/a/nmGCKRidt5CK2RuYG1GBjg3ZQ?autoplay=1&speed=2)
