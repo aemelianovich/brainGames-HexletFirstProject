@@ -22,3 +22,7 @@ Brain GCD Game Tutorial:
 Brain Progression Game Tutorial:
 
 [![Brain Progression Game](https://asciinema.org/a/UdwHm4aNQnrpOizTkxzL36PTh.svg)](https://asciinema.org/a/UdwHm4aNQnrpOizTkxzL36PTh?autoplay=1&speed=2)
+
+Brain Prime Game Tutorial:
+
+[![Brain Prime Game](https://asciinema.org/a/uDKaPzibDpYnc8la5ZeeHzZd8.svg)](https://asciinema.org/a/uDKaPzibDpYnc8la5ZeeHzZd8?autoplay=1&speed=2)
