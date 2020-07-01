@@ -3,9 +3,10 @@ import readlineSync from 'readline-sync';
 // Import specific games to run using game engine
 import * as brainEven from './games/brainEvenGame.js';
 import * as brainCalc from './games/brainCalcGame.js';
+import * as brainGCD from './games/brainGCDGame.js';
 
 // Add game names
-const brainGames = [brainEven.brainEvenName, brainCalc.brainCalcName];
+const brainGames = [brainEven.gameName, brainCalc.gameName, brainGCD.gameName];
 
 /// /////////////////////////////////
 // Game engine logic
@@ -16,25 +17,39 @@ const getGameFunctions = (gameName) => {
   const gameFunctions = new Map();
 
   switch (gameName) {
-    case brainEven.brainEvenName:
+    // Init brain-even game functions
+    case brainEven.gameName:
       // show Game Rules
-      gameFunctions.set('showGameRules', brainEven.showBrainEvenRules);
+      gameFunctions.set('showGameRules', brainEven.showGameRules);
       // get Game Question Expression
-      gameFunctions.set('getGameQuestion', brainEven.getBrainEvenQuestion);
+      gameFunctions.set('getGameQuestion', brainEven.getGameQuestion);
       // get Correct Game Answer
-      gameFunctions.set('getCorrectGameAnswer', brainEven.getBrainEvenCorrectAnswer);
+      gameFunctions.set('getCorrectGameAnswer', brainEven.getCorrectGameAnswer);
 
       return gameFunctions;
 
-    case brainCalc.brainCalcName:
+    // Init brain-calc game functions
+    case brainCalc.gameName:
       // show Game Rules
-      gameFunctions.set('showGameRules', brainCalc.showBrainCalcRules);
+      gameFunctions.set('showGameRules', brainCalc.showGameRules);
       // get Game Question Expression
-      gameFunctions.set('getGameQuestion', brainCalc.getBrainCalcQuestion);
+      gameFunctions.set('getGameQuestion', brainCalc.getGameQuestion);
       // get Correct Game Answer
-      gameFunctions.set('getCorrectGameAnswer', brainCalc.getBrainCalcCorrectAnswer);
+      gameFunctions.set('getCorrectGameAnswer', brainCalc.getCorrectGameAnswer);
 
       return gameFunctions;
+
+    // Init brain-gcd game functions
+    case brainGCD.gameName:
+      // show Game Rules
+      gameFunctions.set('showGameRules', brainGCD.showGameRules);
+      // get Game Question Expression
+      gameFunctions.set('getGameQuestion', brainGCD.getGameQuestion);
+      // get Correct Game Answer
+      gameFunctions.set('getCorrectGameAnswer', brainGCD.getCorrectGameAnswer);
+
+      return gameFunctions;
+
     default:
       throw new Error(`Unable to identify game for passed gameName: "${gameName}"`);
   }

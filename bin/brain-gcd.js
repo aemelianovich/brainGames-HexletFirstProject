@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import * as cli from '../src/cli.js';
-import { gameName } from '../src/games/brainCalcGame.js';
+import { gameName } from '../src/games/brainGCDGame.js';
 import runGame from '../src/index.js';
 
 cli.welcomeMsg();
