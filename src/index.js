@@ -13,8 +13,9 @@ dummyGameFunctions.set('getCorrectGameAnswer', (_questionExprStr) => 'y');
 // Run Game function
 const runGame = (numberOfRounds = 1, playerName = '', gameFunctions = dummyGameFunctions) => {
   // guard conditions
-  if (numberOfRounds < 1) {
-    throw new Error(`Number of rounds should be >= 1. You passed numberOfRounds: "${numberOfRounds}"`);
+  const minRoundValue = 1;
+  if (numberOfRounds < minRoundValue) {
+    throw new Error(`Number of rounds should be >= ${minRoundValue}. You passed numberOfRounds: "${numberOfRounds}"`);
   }
 
   // Show game rules

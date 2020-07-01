@@ -11,9 +11,10 @@ export const getGameQuestion = () => String(Math.floor(Math.random() * 500));
 
 // get correct answer
 export const getCorrectGameAnswer = (questionExprStr) => {
+  const minPrimeNumber = 2;
   const num = Number(questionExprStr);
 
-  if (num <= 1) {
+  if (num < minPrimeNumber) {
     return 'no';
   }
 
