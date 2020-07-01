@@ -11,39 +11,30 @@ const brainGames = [brainEven.brainEvenName, brainCalc.brainCalcName];
 // Game engine logic
 /// /////////////////////////////////
 
-// show Game Rules
-const showGameRules = (gameName) => {
-  switch (gameName) {
-    case brainEven.brainEvenName:
-      brainEven.showBrainEvenRules();
-      break;
-    case brainCalc.brainCalcName:
-      brainCalc.showBrainCalcRules();
-      break;
-    default:
-      throw new Error(`Unable to identify game for passed gameName: "${gameName}"`);
-  }
-};
+// Get Game functions for particular game
+const getGameFunctions = (gameName) => {
+  const gameFunctions = new Map();
 
-// get Game Question Expression
-const getGameQuestion = (gameName) => {
   switch (gameName) {
     case brainEven.brainEvenName:
-      return brainEven.getBrainEvenQuestion();
-    case brainCalc.brainCalcName:
-      return brainCalc.getBrainCalcQuestion();
-    default:
-      throw new Error(`Unable to identify game for passed gameName: "${gameName}"`);
-  }
-};
+      // show Game Rules
+      gameFunctions.set('showGameRules', brainEven.showBrainEvenRules);
+      // get Game Question Expression
+      gameFunctions.set('getGameQuestion', brainEven.getBrainEvenQuestion);
+      // get Correct Game Answer
+      gameFunctions.set('getCorrectGameAnswer', brainEven.getBrainEvenCorrectAnswer);
 
-// get Correct Game Answer
-const getCorrectGameAnswer = (gameName, questionExprStr) => {
-  switch (gameName) {
-    case brainEven.brainEvenName:
-      return brainEven.getBrainEvenCorrectAnswer(questionExprStr);
+      return gameFunctions;
+
     case brainCalc.brainCalcName:
-      return brainCalc.getBrainCalcCorrectAnswer(questionExprStr);
+      // show Game Rules
+      gameFunctions.set('showGameRules', brainCalc.showBrainCalcRules);
+      // get Game Question Expression
+      gameFunctions.set('getGameQuestion', brainCalc.getBrainCalcQuestion);
+      // get Correct Game Answer
+      gameFunctions.set('getCorrectGameAnswer', brainCalc.getBrainCalcCorrectAnswer);
+
+      return gameFunctions;
     default:
       throw new Error(`Unable to identify game for passed gameName: "${gameName}"`);
   }
@@ -58,8 +49,11 @@ const runGame = (numberOfRounds, playerName = '', gameName) => {
     throw new Error(`Number of rounds should be >= 1. You passed numberOfRounds: "${numberOfRounds}"`);
   }
 
+  // Get game functions for particular game
+  const gameFunctions = getGameFunctions(gameName);
+
   // Show game rules
-  showGameRules(gameName);
+  gameFunctions.get('showGameRules')();
 
   // Play round iterative recursion
   const playRound = (currRound) => {
@@ -69,14 +63,14 @@ const runGame = (numberOfRounds, playerName = '', gameName) => {
     }
 
     // Build and show game question
-    const questionExprStr = getGameQuestion(gameName);
+    const questionExprStr = gameFunctions.get('getGameQuestion')();
     console.log(`Question: ${questionExprStr} `);
 
     // Get answer
     const answer = readlineSync.question('Your answer: ');
 
     // Check answer correctness
-    const correctAnswer = getCorrectGameAnswer(gameName, questionExprStr);
+    const correctAnswer = gameFunctions.get('getCorrectGameAnswer')(questionExprStr);
     if (answer === correctAnswer) {
       console.log('Correct!');
       // Go to the next round
