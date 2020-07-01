@@ -20,7 +20,5 @@ export const getBrainCalcQuestion = () => {
 };
 
 // get correct answer
-export const getBrainCalcCorrectAnswer = (questionExprStr) => {
-  // eslint-disable-next-line no-new-func
-  return String(new Function(`return ${questionExprStr};`)());
-};
+// eslint-disable-next-line no-new-func
+export const getBrainCalcCorrectAnswer = (questionExprStr) => String(new Function(`return ${questionExprStr};`)());
