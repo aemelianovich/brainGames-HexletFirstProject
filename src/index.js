@@ -4,9 +4,14 @@ import readlineSync from 'readline-sync';
 import * as brainEven from './games/brainEvenGame.js';
 import * as brainCalc from './games/brainCalcGame.js';
 import * as brainGCD from './games/brainGCDGame.js';
+import * as brainProgression from './games/brainProgressionGame.js';
 
 // Add game names
-const brainGames = [brainEven.gameName, brainCalc.gameName, brainGCD.gameName];
+const brainGames = [
+  brainEven.gameName,
+  brainCalc.gameName,
+  brainGCD.gameName,
+  brainProgression.gameName];
 
 /// /////////////////////////////////
 // Game engine logic
@@ -47,6 +52,17 @@ const getGameFunctions = (gameName) => {
       gameFunctions.set('getGameQuestion', brainGCD.getGameQuestion);
       // get Correct Game Answer
       gameFunctions.set('getCorrectGameAnswer', brainGCD.getCorrectGameAnswer);
+
+      return gameFunctions;
+
+    // Init brain-gcd game functions
+    case brainProgression.gameName:
+      // show Game Rules
+      gameFunctions.set('showGameRules', brainProgression.showGameRules);
+      // get Game Question Expression
+      gameFunctions.set('getGameQuestion', brainProgression.getGameQuestion);
+      // get Correct Game Answer
+      gameFunctions.set('getCorrectGameAnswer', brainProgression.getCorrectGameAnswer);
 
       return gameFunctions;
 

@@ -10,7 +10,7 @@ export const showGameRules = () => console.log('What is the result of the expres
 // game Question
 export const getGameQuestion = () => {
   const operations = ['+', '-', '*'];
-  // Get random number from 1 to 99 for num1 and num2
+  // Get random number from 0 to 99 for num1 and num2
   const num1 = Math.floor(Math.random() * 100);
   const num2 = Math.floor(Math.random() * 100);
   // Get random operation

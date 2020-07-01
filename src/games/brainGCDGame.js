@@ -10,7 +10,7 @@ export const showGameRules = () => console.log('Find the greatest common divisor
 // game Question
 // Get random number from 0 to 99
 export const getGameQuestion = () => {
-  // Get random number from 1 to 99 for num1 and num2
+  // Get random number from 0 to 99 for num1 and num2
   const num1 = Math.floor(Math.random() * 100);
   const num2 = Math.floor(Math.random() * 100);
 
@@ -18,7 +18,7 @@ export const getGameQuestion = () => {
 };
 
 // get correct answer
-export const getCorrectGameAnswer = (questionExprStr = '') => {
+export const getCorrectGameAnswer = (questionExprStr) => {
   // Get two numbers array from string
   const numbs = questionExprStr.split(' ');
 
