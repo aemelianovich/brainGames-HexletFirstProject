@@ -18,3 +18,7 @@ Brain Calc Game Tutorial:
 Brain GCD Game Tutorial:
 
 [![Brain GCD Game](https://asciinema.org/a/aqtSG9LAmdTxbeqVd5YPmNrk7.svg)](https://asciinema.org/a/aqtSG9LAmdTxbeqVd5YPmNrk7?autoplay=1&speed=2)
+
+Brain Progression Game Tutorial:
+
+[![Brain Progression Game](https://asciinema.org/a/UdwHm4aNQnrpOizTkxzL36PTh.svg)](https://asciinema.org/a/UdwHm4aNQnrpOizTkxzL36PTh?autoplay=1&speed=2)
