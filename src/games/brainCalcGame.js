@@ -2,13 +2,11 @@
 // Brain-Calc game related functions
 /// /////////////////////////////////
 
-export const gameName = 'Brain-Calc';
-
 // game Rules
-export const showGameRules = () => console.log('What is the result of the expression?');
+const showGameRules = () => console.log('What is the result of the expression?');
 
 // game Question
-export const getGameQuestion = () => {
+const getGameQuestion = () => {
   const operations = ['+', '-', '*'];
   // Get random number from 0 to 99 for num1 and num2
   const num1 = Math.floor(Math.random() * 100);
@@ -21,4 +19,13 @@ export const getGameQuestion = () => {
 
 // get correct answer
 // eslint-disable-next-line no-new-func
-export const getCorrectGameAnswer = (questionExprStr) => String(new Function(`return ${questionExprStr};`)());
+const getCorrectGameAnswer = (questionExprStr) => String(new Function(`return ${questionExprStr};`)());
+
+// Add game functions into map
+const gameFunctions = new Map();
+gameFunctions.set('showGameRules', showGameRules);
+gameFunctions.set('getGameQuestion', getGameQuestion);
+// eslint-disable-next-line no-unused-vars
+gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+
+export default gameFunctions;

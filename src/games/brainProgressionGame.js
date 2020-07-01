@@ -2,8 +2,6 @@
 // Brain-Progression game related functions
 /// /////////////////////////////////
 
-export const gameName = 'Brain-Progression';
-
 // game Rules
 export const showGameRules = () => console.log('What number is missing in the progression?');
 
@@ -49,3 +47,12 @@ export const getCorrectGameAnswer = (questionExprStr) => {
   delta = progressionArray[hideIndex - 1] - progressionArray[hideIndex - 2];
   return String(Number(progressionArray[hideIndex - 1]) + delta);
 };
+
+// Add game functions into map
+const gameFunctions = new Map();
+gameFunctions.set('showGameRules', showGameRules);
+gameFunctions.set('getGameQuestion', getGameQuestion);
+// eslint-disable-next-line no-unused-vars
+gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+
+export default gameFunctions;
