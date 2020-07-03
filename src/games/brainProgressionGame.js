@@ -17,15 +17,15 @@ export const getGameQuestion = () => {
 
   // Build progression with 10 elements
   // add first element
-  const progressionArray = [firstNum];
+  const progressionNumbs = [firstNum];
   // add all other elements
   for (let i = 1; i < 10; i += 1) {
-    progressionArray.push(progressionArray[i - 1] + delta);
+    progressionNumbs.push(progressionNumbs[i - 1] + delta);
   }
   // hide random element
-  progressionArray[hideIndex] = '..';
+  progressionNumbs[hideIndex] = '..';
 
-  return progressionArray.join(' ');
+  return progressionNumbs.join(' ');
 };
 
 // get correct answer

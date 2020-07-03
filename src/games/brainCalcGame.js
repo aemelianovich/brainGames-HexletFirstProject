@@ -18,6 +18,7 @@ const getGameQuestion = () => {
 };
 
 // get correct answer
+// Calculate math expression e.g. 2 + 3
 // eslint-disable-next-line no-new-func
 const getCorrectGameAnswer = (questionExprStr) => String(new Function(`return ${questionExprStr};`)());
 
