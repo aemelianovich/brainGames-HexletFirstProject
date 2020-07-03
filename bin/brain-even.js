@@ -4,8 +4,8 @@ import * as cli from '../src/cli.js';
 import runGame from '../src/index.js';
 import gameFunctions from '../src/games/brainEvenGame.js';
 
-cli.welcomeMsg();
+cli.showWelcomMsg();
 const userName = cli.askUserName();
-cli.greetingUser(userName);
+cli.showGreetingUser(userName);
 
 runGame(3, userName, gameFunctions);
