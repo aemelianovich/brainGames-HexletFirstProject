@@ -1,41 +1,60 @@
-/// /////////////////////////////////
-// Brain-GCD game related functions
-/// /////////////////////////////////
+import readlineSync from 'readline-sync';
+import utils from '../utils.js';
 
-// game Rules
-export const showGameRules = () => console.log('Find the greatest common divisor of given numbers.');
+const showGameRules = () => console.log('Find the greatest common divisor of given numbers.');
 
-// game Question
-// Get random number from 0 to 99
-export const getGameQuestion = () => {
-  // Get random number from 0 to 99 for num1 and num2
-  const num1 = Math.floor(Math.random() * 100);
-  const num2 = Math.floor(Math.random() * 100);
+const getGameQuestion = () => {
+  const num1 = utils.getRandomInt(0, 100);
+  const num2 = utils.getRandomInt(0, 100);
 
   return `${num1} ${num2}`;
 };
 
-// get correct answer
-export const getCorrectGameAnswer = (questionExprStr) => {
+const showGameQuestion = (question) => console.log(`Question: ${question} `);
+
+const getAnswer = () => readlineSync.question('Your answer: ');
+
+// Find GTC using recursive
+const getGCD = (num1, num2) => {
+  if (num2 === 0) {
+    return num1;
+  }
+  return getGCD(num2, num1 % num2);
+};
+
+const getCorrectGameAnswer = (question) => {
   // Get two numbers array from string
-  const numbs = questionExprStr.split(' ');
+  const [num1, num2] = question.split(' ');
 
-  // Find GTC using recursive Wiki example
-  const getGDC = (num1, num2) => {
-    if (num2 === 0) {
-      return num1;
-    }
-    return getGDC(num2, num1 % num2);
-  };
+  const gcdVal = getGCD(parseInt(num1, 10), parseInt(num2, 10));
 
-  return String(getGDC(Number(numbs[0]), Number(numbs[1])));
+  return `${gcdVal}`;
+};
+
+const showRoundWinMsg = () => console.log('Correct!');
+
+const showRoundLostMsg = (answer, correctAnswer) => console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+
+const showWinMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Congratulations${commaName}!`);
+};
+
+const showLostMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Let's try again${commaName}!`);
 };
 
 // Add game functions into map
 const gameFunctions = new Map();
 gameFunctions.set('showGameRules', showGameRules);
 gameFunctions.set('getGameQuestion', getGameQuestion);
-// eslint-disable-next-line no-unused-vars
+gameFunctions.set('showGameQuestion', showGameQuestion);
+gameFunctions.set('getAnswer', getAnswer);
 gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+gameFunctions.set('showRoundWinMsg', showRoundWinMsg);
+gameFunctions.set('showRoundLostMsg', showRoundLostMsg);
+gameFunctions.set('showWinMsg', showWinMsg);
+gameFunctions.set('showLostMsg', showLostMsg);
 
 export default gameFunctions;

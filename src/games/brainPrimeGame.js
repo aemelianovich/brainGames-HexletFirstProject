@@ -1,37 +1,61 @@
-/// /////////////////////////////////
-// Brain-Progression game related functions
-/// /////////////////////////////////
+import readlineSync from 'readline-sync';
+import utils from '../utils.js';
 
-// game Rules
-export const showGameRules = () => console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+const showGameRules = () => console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
-// game Question
-// Get random number from 0 to 499
-export const getGameQuestion = () => String(Math.floor(Math.random() * 500));
+const getGameQuestion = () => utils.getRandomInt(0, 500);
 
-// get correct answer
-export const getCorrectGameAnswer = (questionExprStr) => {
+const showGameQuestion = (question) => console.log(`Question: ${question} `);
+
+const getAnswer = () => readlineSync.question('Your answer: ');
+
+const isPrime = (num) => {
   const minPrimeNumber = 2;
-  const num = Number(questionExprStr);
-
   if (num < minPrimeNumber) {
-    return 'no';
+    return false;
   }
 
   for (let i = 2; i <= num / 2; i += 1) {
     if ((num % i) === 0) {
-      return 'no';
+      return false;
     }
   }
 
-  return 'yes';
+  return true;
+};
+
+const getCorrectGameAnswer = (question) => {
+  if (isPrime(parseInt(question, 10))) {
+    return 'yes';
+  }
+
+  return 'no';
+};
+
+const showRoundWinMsg = () => console.log('Correct!');
+
+const showRoundLostMsg = (answer, correctAnswer) => console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+
+const showWinMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Congratulations${commaName}!`);
+};
+
+const showLostMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Let's try again${commaName}!`);
 };
 
 // Add game functions into map
 const gameFunctions = new Map();
 gameFunctions.set('showGameRules', showGameRules);
 gameFunctions.set('getGameQuestion', getGameQuestion);
-// eslint-disable-next-line no-unused-vars
+gameFunctions.set('showGameQuestion', showGameQuestion);
+gameFunctions.set('getAnswer', getAnswer);
 gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+gameFunctions.set('showRoundWinMsg', showRoundWinMsg);
+gameFunctions.set('showRoundLostMsg', showRoundLostMsg);
+gameFunctions.set('showWinMsg', showWinMsg);
+gameFunctions.set('showLostMsg', showLostMsg);
 
 export default gameFunctions;

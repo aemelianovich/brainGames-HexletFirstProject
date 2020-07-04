@@ -1,32 +1,67 @@
-/// /////////////////////////////////
-// Brain-Calc game related functions
-/// /////////////////////////////////
+import readlineSync from 'readline-sync';
+import utils from '../utils.js';
 
-// game Rules
 const showGameRules = () => console.log('What is the result of the expression?');
 
-// game Question
 const getGameQuestion = () => {
   const operations = ['+', '-', '*'];
-  // Get random number from 0 to 99 for num1 and num2
-  const num1 = Math.floor(Math.random() * 100);
-  const num2 = Math.floor(Math.random() * 100);
+  const num1 = utils.getRandomInt(0, 100);
+  const num2 = utils.getRandomInt(0, 100);
   // Get random operation
-  const operation = operations[Math.floor(Math.random() * operations.length)];
+  const operation = operations[utils.getRandomInt(0, operations.length)];
 
   return `${num1} ${operation} ${num2}`;
 };
 
-// get correct answer
-// Calculate math expression e.g. 2 + 3
-// eslint-disable-next-line no-new-func
-const getCorrectGameAnswer = (questionExprStr) => String(new Function(`return ${questionExprStr};`)());
+const showGameQuestion = (question) => console.log(`Question: ${question} `);
+
+const getAnswer = () => readlineSync.question('Your answer: ');
+
+const getCorrectGameAnswer = (question) => {
+  // Calculate math expression e.g. 2 + 3
+  const [num1, operation, num2] = question.split(' ');
+  let res;
+  switch (operation) {
+    case '+':
+      res = parseInt(num1, 10) + parseInt(num2, 10);
+      break;
+    case '-':
+      res = parseInt(num1, 10) - parseInt(num2, 10);
+      break;
+    case '*':
+      res = parseInt(num1, 10) * parseInt(num2, 10);
+      break;
+    default:
+      throw new Error(`"${operation}" operation is not supported`);
+  }
+
+  return `${res}`;
+};
+
+const showRoundWinMsg = () => console.log('Correct!');
+
+const showRoundLostMsg = (answer, correctAnswer) => console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+
+const showWinMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Congratulations${commaName}!`);
+};
+
+const showLostMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Let's try again${commaName}!`);
+};
 
 // Add game functions into map
 const gameFunctions = new Map();
 gameFunctions.set('showGameRules', showGameRules);
 gameFunctions.set('getGameQuestion', getGameQuestion);
-// eslint-disable-next-line no-unused-vars
+gameFunctions.set('showGameQuestion', showGameQuestion);
+gameFunctions.set('getAnswer', getAnswer);
 gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+gameFunctions.set('showRoundWinMsg', showRoundWinMsg);
+gameFunctions.set('showRoundLostMsg', showRoundLostMsg);
+gameFunctions.set('showWinMsg', showWinMsg);
+gameFunctions.set('showLostMsg', showLostMsg);
 
 export default gameFunctions;

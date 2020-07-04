@@ -1,17 +1,19 @@
-import readlineSync from 'readline-sync';
-
 /// /////////////////////////////////
-// Game engine logic
+// Game engine logic:
+// List of required game functions:
+// - showGameRules()
+// - getGameQuestion()
+// - showGameQuestion(question)
+// - getAnswer()
+// - getCorrectGameAnswer(question)
+// - showRoundWinMsg()
+// - showRoundLostMsg(answer, correctAnswer)
+// - showWinMsg(playerName)
+// - showLostMsg(playerName)
 /// /////////////////////////////////
-
-const dummyGameFunctions = new Map();
-dummyGameFunctions.set('showGameRules', () => console.log('Dummy game. Pass "y" for correct answer'));
-dummyGameFunctions.set('getGameQuestion', () => 'y or n');
-// eslint-disable-next-line no-unused-vars
-dummyGameFunctions.set('getCorrectGameAnswer', (_questionExprStr) => 'y');
 
 // Run Game function
-const runGame = (numberOfRounds = 1, playerName = '', gameFunctions = dummyGameFunctions) => {
+const runGame = (numberOfRounds = 1, playerName = '', gameFunctions) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
@@ -29,35 +31,32 @@ const runGame = (numberOfRounds = 1, playerName = '', gameFunctions = dummyGameF
     }
 
     // Build and show game question
-    const questionExprStr = gameFunctions.get('getGameQuestion')();
-    console.log(`Question: ${questionExprStr} `);
+    const question = gameFunctions.get('getGameQuestion')();
+    gameFunctions.get('showGameQuestion')(question);
 
     // Get answer
-    const answer = readlineSync.question('Your answer: ');
+    const answer = gameFunctions.get('getAnswer')();
 
     // Check answer correctness
-    const correctAnswer = gameFunctions.get('getCorrectGameAnswer')(questionExprStr);
+    const correctAnswer = gameFunctions.get('getCorrectGameAnswer')(question);
     if (answer === correctAnswer) {
-      console.log('Correct!');
+      gameFunctions.get('showRoundWinMsg')();
       // Go to the next round
       return playRound(currRound + 1);
     }
 
     // Show incorrect answer
-    console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+    gameFunctions.get('showRoundLostMsg')(answer, correctAnswer);
 
     return false;
   };
 
-  // Build ,<name> string if name is not empty
-  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
-
-  // Init first round
-  // If all rounds will be ended successfully then congratulation otherwise ask for another try
-  if (playRound(1)) {
-    console.log(`Congratulations${commaName}!`);
+  // Init first round and get game result
+  const isWinner = playRound(1);
+  if (isWinner) {
+    gameFunctions.get('showWinMsg')(playerName);
   } else {
-    console.log(`Let's try again${commaName}!`);
+    gameFunctions.get('showLostMsg')(playerName);
   }
 };
 

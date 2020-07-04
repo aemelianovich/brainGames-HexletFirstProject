@@ -4,7 +4,7 @@ import * as cli from '../src/cli.js';
 import runGame from '../src/index.js';
 import gameFunctions from '../src/games/brainProgressionGame.js';
 
-cli.showWelcomMsg();
+cli.showWelcomeMsg();
 const userName = cli.askUserName();
 cli.showGreetingUser(userName);
 

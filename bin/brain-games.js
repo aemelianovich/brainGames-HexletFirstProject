@@ -2,7 +2,7 @@
 
 import * as cli from '../src/cli.js';
 
-cli.showWelcomMsg();
+cli.showWelcomeMsg();
 
 const userName = cli.askUserName();
 cli.showGreetingUser(userName);
