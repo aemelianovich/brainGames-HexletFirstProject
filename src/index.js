@@ -18,6 +18,7 @@
 /// /////////////////////////////////
 
 import readlineSync from 'readline-sync';
+import utils from './utils.js';
 
 // //////////////////////
 // Default game functions
@@ -30,15 +31,9 @@ const showRoundWinDefaultMsg = () => console.log('Correct!');
 
 const showRoundLostDefaultMsg = (answer, correctAnswer) => console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
 
-const showWinDefaultMsg = (playerName) => {
-  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
-  console.log(`Congratulations${commaName}!`);
-};
+const showWinDefaultMsg = (playerName) => console.log(`Congratulations${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
 
-const showLostDefaultMsg = (playerName) => {
-  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
-  console.log(`Let's try again${commaName}!`);
-};
+const showLostDefaultMsg = (playerName) => console.log(`Let's try again${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
 
 // /////////////////
 // Run Game function

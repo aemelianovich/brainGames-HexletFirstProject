@@ -4,4 +4,9 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (maxNum - minNum)) + minNum;
 };
 
-export default { getRandomInt };
+const addCommaPrefixForNonEmptyStr = (str) => {
+  const commaStr = (str.length === 0 ? '' : `, ${str}`);
+  return commaStr;
+};
+
+export default { getRandomInt, addCommaPrefixForNonEmptyStr };
