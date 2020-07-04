@@ -18,7 +18,6 @@
 /// /////////////////////////////////
 
 import readlineSync from 'readline-sync';
-import cli from './cli.js';
 import utils from './utils.js';
 
 // //////////////////////
@@ -48,7 +47,7 @@ const runGame = (numberOfRounds = 1, gameFunctions) => {
 
   // Init user in the game
   console.log('Welcome to the Brain Games');
-  const playerName = cli.askUserName();
+  const playerName = readlineSync.question('May I have your name? ');
   console.log(`Hello${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
 
   // Setup default functions
