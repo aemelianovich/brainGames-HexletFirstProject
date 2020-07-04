@@ -39,11 +39,11 @@ const getCorrectGameAnswer = (question) => {
   if (distanceToMaxElement > 1) {
     delta = progressionArray[hideIndex + 2] - progressionArray[hideIndex + 1];
     result = (progressionArray[hideIndex + 1] - delta);
+    return `${result}`;
   }
   // Otherwise we can take two left neighbors for calculation
   delta = progressionArray[hideIndex - 1] - progressionArray[hideIndex - 2];
   result = parseInt(progressionArray[hideIndex - 1], 10) + delta;
-
   return `${result}`;
 };
 
