@@ -14,17 +14,20 @@ const getGameQuestion = () => {
 
 const getCorrectGameAnswer = (question) => {
   // Calculate math expression e.g. 2 + 3
-  const [num1, operation, num2] = question.split(' ');
+  const [num1Str, operation, num2Str] = question.split(' ');
+  const num1 = parseInt(num1Str, 10);
+  const num2 = parseInt(num2Str, 10);
+
   let res;
   switch (operation) {
     case '+':
-      res = parseInt(num1, 10) + parseInt(num2, 10);
+      res = num1 + num2;
       break;
     case '-':
-      res = parseInt(num1, 10) - parseInt(num2, 10);
+      res = num1 - num2;
       break;
     case '*':
-      res = parseInt(num1, 10) * parseInt(num2, 10);
+      res = num1 * num2;
       break;
     default:
       throw new Error(`"${operation}" operation is not supported`);
