@@ -38,7 +38,7 @@ const showLostDefaultMsg = (playerName) => console.log(`Let's try again${utils.a
 // /////////////////
 // Run Game function
 // /////////////////
-const runGame = (numberOfRounds = 1, playerName = '', gameFunctions = new Map()) => {
+const runGame = (numberOfRounds = 1, playerName = '', gameFunctions) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
