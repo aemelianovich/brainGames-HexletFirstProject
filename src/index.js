@@ -1,23 +1,78 @@
 /// /////////////////////////////////
 // Game engine logic:
-// List of required game functions:
+//
+// List of game functions.
+//
+// Required:
 // - showGameRules()
 // - getGameQuestion()
+// - getCorrectGameAnswer(question)
+//
+// Optional (default functions will be used instead):
 // - showGameQuestion(question)
 // - getAnswer()
-// - getCorrectGameAnswer(question)
 // - showRoundWinMsg()
 // - showRoundLostMsg(answer, correctAnswer)
 // - showWinMsg(playerName)
 // - showLostMsg(playerName)
 /// /////////////////////////////////
 
+import readlineSync from 'readline-sync';
+
+// //////////////////////
+// Default game functions
+// //////////////////////
+const showGameQuestionDefaultMsg = (question) => console.log(`Question: ${question} `);
+
+const getDefaultAnswer = () => readlineSync.question('Your answer: ');
+
+const showRoundWinDefaultMsg = () => console.log('Correct!');
+
+const showRoundLostDefaultMsg = (answer, correctAnswer) => console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+
+const showWinDefaultMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Congratulations${commaName}!`);
+};
+
+const showLostDefaultMsg = (playerName) => {
+  const commaName = (playerName.length === 0 ? '' : `, ${playerName}`);
+  console.log(`Let's try again${commaName}!`);
+};
+
+// /////////////////
 // Run Game function
-const runGame = (numberOfRounds = 1, playerName = '', gameFunctions) => {
+// /////////////////
+const runGame = (numberOfRounds = 1, playerName = '', gameFunctions = new Map()) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
     throw new Error(`Number of rounds should be >= ${minRoundValue}. You passed numberOfRounds: "${numberOfRounds}"`);
+  }
+
+  // Setup default functions
+  if (!gameFunctions.has('showGameQuestion')) {
+    gameFunctions.set('showGameQuestion', showGameQuestionDefaultMsg);
+  }
+
+  if (!gameFunctions.has('getAnswer')) {
+    gameFunctions.set('getAnswer', getDefaultAnswer);
+  }
+
+  if (!gameFunctions.has('showRoundWinMsg')) {
+    gameFunctions.set('showRoundWinMsg', showRoundWinDefaultMsg);
+  }
+
+  if (!gameFunctions.has('showRoundLostMsg')) {
+    gameFunctions.set('showRoundLostMsg', showRoundLostDefaultMsg);
+  }
+
+  if (!gameFunctions.has('showWinMsg')) {
+    gameFunctions.set('showWinMsg', showWinDefaultMsg);
+  }
+
+  if (!gameFunctions.has('showLostMsg')) {
+    gameFunctions.set('showLostMsg', showLostDefaultMsg);
   }
 
   // Show game rules
