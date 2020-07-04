@@ -14,7 +14,7 @@ const showGameQuestion = (question) => console.log(`Question: ${question} `);
 
 const getAnswer = () => readlineSync.question('Your answer: ');
 
-// Find GTC using recursive
+// Find GCD using recursive
 const getGCD = (num1, num2) => {
   if (num2 === 0) {
     return num1;
