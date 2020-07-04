@@ -18,6 +18,7 @@
 /// /////////////////////////////////
 
 import readlineSync from 'readline-sync';
+import cli from './cli.js';
 import utils from './utils.js';
 
 // //////////////////////
@@ -38,12 +39,17 @@ const showLostDefaultMsg = (playerName) => console.log(`Let's try again${utils.a
 // /////////////////
 // Run Game function
 // /////////////////
-const runGame = (numberOfRounds = 1, playerName = '', gameFunctions) => {
+const runGame = (numberOfRounds = 1, gameFunctions) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
     throw new Error(`Number of rounds should be >= ${minRoundValue}. You passed numberOfRounds: "${numberOfRounds}"`);
   }
+
+  // Init user in the game
+  console.log('Welcome to the Brain Games');
+  const playerName = cli.askUserName();
+  console.log(`Hello${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
 
   // Setup default functions
   if (!gameFunctions.has('showGameQuestion')) {

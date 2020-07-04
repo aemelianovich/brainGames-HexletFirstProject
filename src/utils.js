@@ -1,8 +1,4 @@
-const getRandomInt = (min, max) => {
-  const minNum = Math.ceil(min);
-  const maxNum = Math.floor(max);
-  return Math.floor(Math.random() * (maxNum - minNum)) + minNum;
-};
+const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const addCommaPrefixForNonEmptyStr = (str) => {
   const commaStr = (str.length === 0 ? '' : `, ${str}`);

@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 
-import * as cli from '../src/cli.js';
 import runGame from '../src/index.js';
 import gameFunctions from '../src/games/brainGCDGame.js';
 
-cli.showWelcomeMsg();
-const userName = cli.askUserName();
-cli.showGreetingUser(userName);
-
-runGame(3, userName, gameFunctions);
+runGame(3, gameFunctions);
