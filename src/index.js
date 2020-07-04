@@ -15,7 +15,8 @@
 // Run Game function
 const runGame = (numberOfRounds = 1, playerName = '', gameFunctions) => {
   // guard conditions
-  if (numberOfRounds < 1) {
+  const minRoundValue = 1;
+  if (numberOfRounds < minRoundValue) {
     throw new Error(`Number of rounds should be >= ${minRoundValue}. You passed numberOfRounds: "${numberOfRounds}"`);
   }
 
