@@ -2,22 +2,9 @@ import utils from '../utils.js';
 
 const showGameRules = () => console.log('What number is missing in the progression?');
 
-const getRandomProgression = (firstElementMaxValue, deltaMaxValue, numOfElements) => {
-  const firstNumInProgression = utils.getRandomInt(0, firstElementMaxValue);
-  const delta = utils.getRandomInt(1, deltaMaxValue);
-
-  const progressionNumbs = [firstNumInProgression];
-
-  for (let i = 1; i < numOfElements; i += 1) {
-    progressionNumbs.push(progressionNumbs[i - 1] + delta);
-  }
-
-  return progressionNumbs;
-};
-
 const getGameQuestion = () => {
   // Get 10 elements progression
-  const progressionNumbs = getRandomProgression(100, 100, 10);
+  const progressionNumbs = utils.getRandomProgression(100, 100, 10);
 
   // Get progression element to hide as random number from 0 to 9
   const hideIndex = utils.getRandomInt(0, 10);

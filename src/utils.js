@@ -5,4 +5,37 @@ const addCommaPrefixForNonEmptyStr = (str) => {
   return commaStr;
 };
 
-export default { getRandomInt, addCommaPrefixForNonEmptyStr };
+const isPrime = (num) => {
+  const minPrimeNumber = 2;
+  if (num < minPrimeNumber) {
+    return false;
+  }
+
+  for (let i = 2; i <= num / 2; i += 1) {
+    if ((num % i) === 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const getRandomProgression = (firstElementMaxValue, deltaMaxValue, numOfElements) => {
+  const firstNumInProgression = getRandomInt(0, firstElementMaxValue);
+  const delta = getRandomInt(1, deltaMaxValue);
+
+  const progressionNumbs = [firstNumInProgression];
+
+  for (let i = 1; i < numOfElements; i += 1) {
+    progressionNumbs.push(progressionNumbs[i - 1] + delta);
+  }
+
+  return progressionNumbs;
+};
+
+export default {
+  getRandomProgression,
+  getRandomInt,
+  addCommaPrefixForNonEmptyStr,
+  isPrime,
+};
