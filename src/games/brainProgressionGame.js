@@ -1,6 +1,6 @@
 import utils from '../utils.js';
 
-const showGameRules = () => console.log('What number is missing in the progression?');
+const getGameRules = () => 'What number is missing in the progression?';
 
 const getGameQuestion = () => {
   // Get 10 elements progression
@@ -8,36 +8,20 @@ const getGameQuestion = () => {
 
   // Get progression element to hide as random number from 0 to 9
   const hideIndex = utils.getRandomInt(0, 10);
-  progressionNumbs[hideIndex] = '..';
+  let hiddenNum = '..';
+  [hiddenNum, progressionNumbs[hideIndex]] = [progressionNumbs[hideIndex], hiddenNum];
 
-  return progressionNumbs.join(' ');
+  return [progressionNumbs.join(' '), hiddenNum];
 };
 
-const getCorrectGameAnswer = (question) => {
-  const progressionArray = question.split(' ');
-  const hideIndex = progressionArray.indexOf('..');
-
-  let delta = 0;
-  let result;
-
-  // Find two neighbor elements to calculate delta
-  const distanceToMaxElement = (progressionArray.length - 1) - hideIndex;
-  // If not the last two we can take two right neighbors for calculation
-  if (distanceToMaxElement > 1) {
-    delta = progressionArray[hideIndex + 2] - progressionArray[hideIndex + 1];
-    result = (progressionArray[hideIndex + 1] - delta);
-    return `${result}`;
-  }
-  // Otherwise we can take two left neighbors for calculation
-  delta = progressionArray[hideIndex - 1] - progressionArray[hideIndex - 2];
-  result = parseInt(progressionArray[hideIndex - 1], 10) + delta;
-  return `${result}`;
+const getGameQuestionAndAnswer = () => {
+  const [question, hiddenNum] = getGameQuestion();
+  return [question, `${hiddenNum}`];
 };
 
 // Add game functions into map
 const gameFunctions = new Map();
-gameFunctions.set('showGameRules', showGameRules);
-gameFunctions.set('getGameQuestion', getGameQuestion);
-gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+gameFunctions.set('getGameRules', getGameRules);
+gameFunctions.set('getGameQuestionAndAnswer', getGameQuestionAndAnswer);
 
 export default gameFunctions;

@@ -4,7 +4,7 @@
 // List of game functions.
 //
 // Required:
-// - showGameRules()
+// - getGameRules()
 // - getGameQuestion()
 // - getCorrectGameAnswer(question)
 /// /////////////////////////////////
@@ -28,7 +28,7 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
   console.log(`Hello${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
 
   // Show game rules
-  gameFunctions.get('showGameRules')();
+  console.log(`${gameFunctions.get('getGameRules')()}`);
 
   // Play round iterative recursion
   const playRound = (currRound) => {
@@ -38,14 +38,13 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
     }
 
     // Build and show game question
-    const question = gameFunctions.get('getGameQuestion')();
+    const [question, correctAnswer] = gameFunctions.get('getGameQuestionAndAnswer')();
     console.log(`Question: ${question} `);
 
     // Get answer
     const answer = readlineSync.question('Your answer: ');
 
     // Check answer correctness
-    const correctAnswer = gameFunctions.get('getCorrectGameAnswer')(question);
     if (answer === correctAnswer) {
       console.log('Correct!');
       // Go to the next round

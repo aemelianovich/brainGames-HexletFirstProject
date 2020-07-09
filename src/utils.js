@@ -21,16 +21,30 @@ const isPrime = (num) => {
 };
 
 const getRandomProgression = (firstElementMaxValue, deltaMaxValue, numOfElements) => {
-  const firstNumInProgression = getRandomInt(0, firstElementMaxValue);
   const delta = getRandomInt(1, deltaMaxValue);
+  const progressionNumbs = [];
 
-  const progressionNumbs = [firstNumInProgression];
-
-  for (let i = 1; i < numOfElements; i += 1) {
-    progressionNumbs.push(progressionNumbs[i - 1] + delta);
+  for (let i = getRandomInt(0, firstElementMaxValue);
+    progressionNumbs.length < numOfElements;
+    i += delta) {
+    progressionNumbs.push(i);
   }
 
   return progressionNumbs;
+};
+
+const getGCD = (num1, num2) => {
+  if (num2 === 0) {
+    return num1;
+  }
+  return getGCD(num2, num1 % num2);
+};
+
+const isEven = (num) => {
+  if (num % 2 === 0) {
+    return true;
+  }
+  return false;
 };
 
 export default {
@@ -38,4 +52,6 @@ export default {
   getRandomInt,
   addCommaPrefixForNonEmptyStr,
   isPrime,
+  getGCD,
+  isEven,
 };

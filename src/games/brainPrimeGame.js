@@ -1,6 +1,6 @@
 import utils from '../utils.js';
 
-const showGameRules = () => console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+const getGameRules = () => 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const getGameQuestion = () => utils.getRandomInt(0, 500);
 
@@ -12,10 +12,16 @@ const getCorrectGameAnswer = (question) => {
   return 'no';
 };
 
+const getGameQuestionAndAnswer = () => {
+  const question = getGameQuestion();
+  const correctAnswer = getCorrectGameAnswer(question);
+
+  return [question, correctAnswer];
+};
+
 // Add game functions into map
 const gameFunctions = new Map();
-gameFunctions.set('showGameRules', showGameRules);
-gameFunctions.set('getGameQuestion', getGameQuestion);
-gameFunctions.set('getCorrectGameAnswer', getCorrectGameAnswer);
+gameFunctions.set('getGameRules', getGameRules);
+gameFunctions.set('getGameQuestionAndAnswer', getGameQuestionAndAnswer);
 
 export default gameFunctions;
