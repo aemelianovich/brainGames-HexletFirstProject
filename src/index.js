@@ -28,7 +28,7 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
   console.log(`Hello${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
 
   // Show game rules
-  console.log(`${gameFunctions.get('getGameRules')()}`);
+  console.log(`${gameFunctions.getGameRules()}`);
 
   // Play round iterative recursion
   const playRound = (currRound) => {
@@ -38,7 +38,7 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
     }
 
     // Build and show game question
-    const [question, correctAnswer] = gameFunctions.get('getGameQuestionAndAnswer')();
+    const [question, correctAnswer] = gameFunctions.getGameQuestionAndAnswer();
     console.log(`Question: ${question} `);
 
     // Get answer

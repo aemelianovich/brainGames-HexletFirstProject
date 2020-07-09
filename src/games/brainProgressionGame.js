@@ -2,7 +2,7 @@ import utils from '../utils.js';
 
 const getGameRules = () => 'What number is missing in the progression?';
 
-const getGameQuestion = () => {
+const getGameQuestionAndAnswer = () => {
   // Get 10 elements progression
   const progressionNumbs = utils.getRandomProgression(100, 100, 10);
 
@@ -11,17 +11,10 @@ const getGameQuestion = () => {
   let hiddenNum = '..';
   [hiddenNum, progressionNumbs[hideIndex]] = [progressionNumbs[hideIndex], hiddenNum];
 
-  return [progressionNumbs.join(' '), hiddenNum];
+  return [progressionNumbs.join(' '), `${hiddenNum}`];
 };
 
-const getGameQuestionAndAnswer = () => {
-  const [question, hiddenNum] = getGameQuestion();
-  return [question, `${hiddenNum}`];
-};
-
-// Add game functions into map
-const gameFunctions = new Map();
-gameFunctions.set('getGameRules', getGameRules);
-gameFunctions.set('getGameQuestionAndAnswer', getGameQuestionAndAnswer);
+// Add game functions into associated array
+const gameFunctions = { getGameRules, getGameQuestionAndAnswer };
 
 export default gameFunctions;
