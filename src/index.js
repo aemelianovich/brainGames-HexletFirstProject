@@ -5,8 +5,7 @@
 //
 // Required:
 // - getGameRules()
-// - getGameQuestion()
-// - getCorrectGameAnswer(question)
+// - getCorrectGameAnswer()
 /// /////////////////////////////////
 
 import readlineSync from 'readline-sync';
