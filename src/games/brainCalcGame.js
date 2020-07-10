@@ -32,7 +32,7 @@ const getGameQuestionAndAnswer = () => {
 
   const correctAnswer = calcExpression(num1, num2, operation);
 
-  return [`${num1} ${operation} ${num2}`, `${correctAnswer}`];
+  return [`${num1} ${operation} ${num2}`, String(correctAnswer)];
 };
 
 // Add game functions into associated array

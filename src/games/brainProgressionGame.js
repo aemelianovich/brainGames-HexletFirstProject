@@ -11,7 +11,7 @@ const getGameQuestionAndAnswer = () => {
   let hiddenNum = '..';
   [hiddenNum, progressionNumbs[hideIndex]] = [progressionNumbs[hideIndex], hiddenNum];
 
-  return [progressionNumbs.join(' '), `${hiddenNum}`];
+  return [progressionNumbs.join(' '), String(hiddenNum)];
 };
 
 // Add game functions into associated array

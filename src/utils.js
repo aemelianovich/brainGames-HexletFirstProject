@@ -1,9 +1,6 @@
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-const addCommaPrefixForNonEmptyStr = (str) => {
-  const commaStr = (str ? `, ${str}` : str);
-  return commaStr;
-};
+const addCommaPrefixForNonEmptyStr = (str) => (str ? `, ${str}` : str);
 
 const isPrime = (num) => {
   const minPrimeNumber = 2;

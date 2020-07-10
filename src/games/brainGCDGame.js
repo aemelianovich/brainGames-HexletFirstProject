@@ -6,9 +6,9 @@ const getGameQuestionAndAnswer = () => {
   const num1 = utils.getRandomInt(0, 100);
   const num2 = utils.getRandomInt(0, 100);
 
-  const gcdVal = utils.getGCD(parseInt(num1, 10), parseInt(num2, 10));
+  const gcdVal = utils.getGCD(num1, num2);
 
-  return [`${num1} ${num2}`, `${gcdVal}`];
+  return [`${num1} ${num2}`, String(gcdVal)];
 };
 
 // Add game functions into associated array
