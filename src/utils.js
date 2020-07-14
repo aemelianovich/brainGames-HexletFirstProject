@@ -1,7 +1,5 @@
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-const addCommaPrefixForNonEmptyStr = (str) => (str ? `, ${str}` : str);
-
 const isPrime = (num) => {
   const minPrimeNumber = 2;
   if (num < minPrimeNumber) {
@@ -17,11 +15,10 @@ const isPrime = (num) => {
   return true;
 };
 
-const getRandomProgression = (firstElementMaxValue, deltaMaxValue, numOfElements) => {
-  const delta = getRandomInt(1, deltaMaxValue);
+const getProgression = (firstElement, delta, numOfElements) => {
   const progressionNumbs = [];
 
-  for (let i = getRandomInt(0, firstElementMaxValue);
+  for (let i = firstElement;
     progressionNumbs.length < numOfElements;
     i += delta) {
     progressionNumbs.push(i);
@@ -45,9 +42,8 @@ const isEven = (num) => {
 };
 
 export default {
-  getRandomProgression,
+  getProgression,
   getRandomInt,
-  addCommaPrefixForNonEmptyStr,
   isPrime,
   getGCD,
   isEven,

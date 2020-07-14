@@ -1,15 +1,15 @@
 import utils from '../utils.js';
 
-const getGameRules = () => 'Answer "yes" if the number is even, otherwise answer "no".';
+const gameRules = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 const getGameQuestionAndAnswer = () => {
-  const num = utils.getRandomInt(0, 100);
-  const correctAnswer = (utils.isEven(num)) ? 'yes' : 'no';
+  const question = utils.getRandomInt(0, 100);
+  const correctAnswer = (utils.isEven(question)) ? 'yes' : 'no';
 
-  return [num, correctAnswer];
+  return { question, correctAnswer };
 };
 
 // Add game functions into associated array
-const gameFunctions = { getGameRules, getGameQuestionAndAnswer };
+const gameFunctionsAndAttrs = { gameRules, getGameQuestionAndAnswer };
 
-export default gameFunctions;
+export default gameFunctionsAndAttrs;

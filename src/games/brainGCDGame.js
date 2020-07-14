@@ -1,17 +1,18 @@
 import utils from '../utils.js';
 
-const getGameRules = () => 'Find the greatest common divisor of given numbers.';
+const gameRules = 'Find the greatest common divisor of given numbers.';
 
 const getGameQuestionAndAnswer = () => {
   const num1 = utils.getRandomInt(0, 100);
   const num2 = utils.getRandomInt(0, 100);
 
-  const gcdVal = utils.getGCD(num1, num2);
+  const question = `${num1} ${num2}`;
+  const correctAnswer = String(utils.getGCD(num1, num2));
 
-  return [`${num1} ${num2}`, String(gcdVal)];
+  return { question, correctAnswer };
 };
 
 // Add game functions into associated array
-const gameFunctions = { getGameRules, getGameQuestionAndAnswer };
+const gameFunctionsAndAttrs = { gameRules, getGameQuestionAndAnswer };
 
-export default gameFunctions;
+export default gameFunctionsAndAttrs;

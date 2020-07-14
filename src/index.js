@@ -4,17 +4,18 @@
 // List of game functions.
 //
 // Required:
-// - getGameRules()
+// - gameRules
 // - getCorrectGameAnswer()
 /// /////////////////////////////////
 
 import readlineSync from 'readline-sync';
-import utils from './utils.js';
 
 // /////////////////
 // Run Game function
 // /////////////////
-const runGame = (numberOfRounds = 3, gameFunctions) => {
+const defaultNumberOfRounds = 3;
+
+const runGame = (gameFunctionsAndAttrs, numberOfRounds = defaultNumberOfRounds) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
@@ -23,11 +24,11 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
 
   // Init user in the game
   console.log('Welcome to the Brain Games');
-  const playerName = readlineSync.question('May I have your name? ');
-  console.log(`Hello${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
+  const playerName = readlineSync.question('May I have your name? ', { defaultInput: 'Guest' });
+  console.log(`Hello, ${playerName}!`);
 
   // Show game rules
-  console.log(`${gameFunctions.getGameRules()}`);
+  console.log(gameFunctionsAndAttrs.gameRules);
 
   // Play round iterative recursion
   const playRound = (currRound) => {
@@ -37,7 +38,7 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
     }
 
     // Build and show game question
-    const [question, correctAnswer] = gameFunctions.getGameQuestionAndAnswer();
+    const { question, correctAnswer } = gameFunctionsAndAttrs.getGameQuestionAndAnswer();
     console.log(`Question: ${question} `);
 
     // Get answer
@@ -59,9 +60,9 @@ const runGame = (numberOfRounds = 3, gameFunctions) => {
   // Init first round and get game result
   const isWinner = playRound(1);
   if (isWinner) {
-    console.log(`Congratulations${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
+    console.log(`Congratulations, ${playerName}!`);
   } else {
-    console.log(`Let's try again${utils.addCommaPrefixForNonEmptyStr(playerName)}!`);
+    console.log(`Let's try again, ${playerName}!`);
   }
 };
 

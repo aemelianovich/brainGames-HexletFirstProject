@@ -1,20 +1,27 @@
 import utils from '../utils.js';
 
-const getGameRules = () => 'What number is missing in the progression?';
+const gameRules = 'What number is missing in the progression?';
 
 const getGameQuestionAndAnswer = () => {
-  // Get 10 elements progression
-  const progressionNumbs = utils.getRandomProgression(100, 100, 10);
+  const progressionLength = 10;
+  const firstElement = utils.getRandomInt(0, 100);
+  const delta = utils.getRandomInt(1, 100);
 
-  // Get progression element to hide as random number from 0 to 9
-  const hideIndex = utils.getRandomInt(0, 10);
+  const progressionNumbs = utils.getProgression(firstElement, delta, progressionLength);
+
+  // Get progression element to hide as random number
+  const hideIndex = utils.getRandomInt(0, progressionLength);
+
   let hiddenNum = '..';
   [hiddenNum, progressionNumbs[hideIndex]] = [progressionNumbs[hideIndex], hiddenNum];
 
-  return [progressionNumbs.join(' '), String(hiddenNum)];
+  const question = progressionNumbs.join(' ');
+  const correctAnswer = String(hiddenNum);
+
+  return { question, correctAnswer };
 };
 
 // Add game functions into associated array
-const gameFunctions = { getGameRules, getGameQuestionAndAnswer };
+const gameFunctionsAndAttrs = { gameRules, getGameQuestionAndAnswer };
 
-export default gameFunctions;
+export default gameFunctionsAndAttrs;

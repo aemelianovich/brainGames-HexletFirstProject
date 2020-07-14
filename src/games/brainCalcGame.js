@@ -2,7 +2,7 @@ import utils from '../utils.js';
 
 const operations = ['+', '-', '*'];
 
-const getGameRules = () => 'What is the result of the expression?';
+const gameRules = 'What is the result of the expression?';
 
 const calcExpression = (num1, num2, operation) => {
   // Calculate math expression e.g. 2 + 3
@@ -30,12 +30,13 @@ const getGameQuestionAndAnswer = () => {
   // Get random operation
   const operation = operations[utils.getRandomInt(0, operations.length)];
 
-  const correctAnswer = calcExpression(num1, num2, operation);
+  const question = `${num1} ${operation} ${num2}`;
+  const correctAnswer = String(calcExpression(num1, num2, operation));
 
-  return [`${num1} ${operation} ${num2}`, String(correctAnswer)];
+  return { question, correctAnswer };
 };
 
 // Add game functions into associated array
-const gameFunctions = { getGameRules, getGameQuestionAndAnswer };
+const gameFunctionsAndAttrs = { gameRules, getGameQuestionAndAnswer };
 
-export default gameFunctions;
+export default gameFunctionsAndAttrs;
