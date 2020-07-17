@@ -16,12 +16,10 @@ const isPrime = (num) => {
 };
 
 const getProgression = (firstElement, delta, numOfElements) => {
-  const progressionNumbs = [];
+  const progressionNumbs = [firstElement];
 
-  for (let i = firstElement;
-    progressionNumbs.length < numOfElements;
-    i += delta) {
-    progressionNumbs.push(i);
+  for (let i = 1; i < numOfElements; i += 1) {
+    progressionNumbs.push(progressionNumbs[i - 1] + delta);
   }
 
   return progressionNumbs;

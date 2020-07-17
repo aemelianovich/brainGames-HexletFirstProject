@@ -13,9 +13,9 @@ import readlineSync from 'readline-sync';
 // /////////////////
 // Run Game function
 // /////////////////
-const defaultNumberOfRounds = 3;
+const numberOfRounds = 3;
 
-const runGame = (gameFunctionsAndAttrs, numberOfRounds = defaultNumberOfRounds) => {
+const runGame = (gameFunctionsAndAttrs) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
