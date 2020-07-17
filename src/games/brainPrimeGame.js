@@ -1,4 +1,5 @@
 import utils from '../utils.js';
+import runEngine from '../index.js';
 
 const gameRules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
@@ -12,4 +13,8 @@ const getGameQuestionAndAnswer = () => {
 // Add game functions into associated array
 const gameFunctionsAndAttrs = { gameRules, getGameQuestionAndAnswer };
 
-export default gameFunctionsAndAttrs;
+const runGame = () => {
+  runEngine(gameFunctionsAndAttrs);
+};
+
+export default runGame;

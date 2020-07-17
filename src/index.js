@@ -1,21 +1,21 @@
 /// /////////////////////////////////
 // Game engine logic:
 //
-// List of game functions.
-//
 // Required:
+// Attrs:
 // - gameRules
+// Functions:
 // - getCorrectGameAnswer()
 /// /////////////////////////////////
 
 import readlineSync from 'readline-sync';
 
 // /////////////////
-// Run Game function
+// Run Engine function
 // /////////////////
 const numberOfRounds = 3;
 
-const runGame = (gameFunctionsAndAttrs) => {
+const runEngine = (gameFunctionsAndAttrs) => {
   // guard conditions
   const minRoundValue = 1;
   if (numberOfRounds < minRoundValue) {
@@ -66,4 +66,4 @@ const runGame = (gameFunctionsAndAttrs) => {
   }
 };
 
-export default runGame;
+export default runEngine;
